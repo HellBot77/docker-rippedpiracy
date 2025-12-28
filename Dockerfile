@@ -6,7 +6,7 @@ RUN git clone --recurse-submodules https://github.com/rippedpiracy/site.git && \
     ([[ "$TAG" = "latest" ]] || (git checkout ${TAG} && git submodule update --recursive))
     # rm -rf .git
 
-FROM python AS build
+FROM --platform=$BUILDPLATFORM python AS build
 
 WORKDIR /site
 COPY --from=base /git/site .
